@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import boardReducer from '../features/board/boardSlice';
+import formReducer from '../features/form/formSlice';
+import userReducer from '../features/user/userSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    board: boardReducer,
+    form: formReducer,
+    user: userReducer,
   },
 });
