@@ -11,7 +11,6 @@ import {
 } from './features/board/boardSlice';
 import { selectDifficulty } from './features/form/formSlice';
 
-
 // debug
 import pieceCounter from './debug/pieceCounter';
 import { selectBoard } from './features/board/boardSlice';
@@ -26,7 +25,6 @@ function App() {
   // debug
   const board = selectBoard();
   // /debug
-
 
   useEffect(() => {
     createNewBoard(difficulty);
