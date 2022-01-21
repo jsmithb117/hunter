@@ -1,3 +1,4 @@
+import React from 'react';
 import Health from './Health';
 import MinesCount from './MinesCount';
 import {
