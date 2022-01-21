@@ -29,3 +29,5 @@ export const {
 
 export const selectDifficulty = (state) => state.form.difficulty;
 export const selectMinesDisplay = (state) => state.form.minesDisplay;
+
+export default formSlice.reducer;

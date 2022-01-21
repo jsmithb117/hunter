@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import Home from './Home';
+import Home from './components/Home';
 
 import {
   createNewBoard,

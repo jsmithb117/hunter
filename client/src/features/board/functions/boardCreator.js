@@ -1,8 +1,6 @@
-import {
-  PieceClass,
-  rowColGenerator,
-  calculateValues,
-} from './';
+import PieceClass from './PieceClass';
+import rowColGenerator from './rowColGenerator';
+import calculateValues from './calculateValues';
 
 const boardCreator = (difficultyObject) => {
   const { length, width, mines, vaccines, lockdowns } = difficultyObject;

@@ -1,4 +1,4 @@
-export function* rowColGenerator(length, width) {
+function* rowColGenerator(length, width) {
   let row = 0;
   let col = 0;
 
@@ -11,3 +11,5 @@ export function* rowColGenerator(length, width) {
     }
   }
 };
+
+export default rowColGenerator;

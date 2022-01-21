@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import initialState from './initialState';
-import zeroFinder from './zeroFinder';
-import boardCreator from './boardCreator';
+import zeroFinder from './functions/zeroFinder';
+import boardCreator from './functions/boardCreator';
 
 export const boardSlice = createSlice({
   name: 'board',

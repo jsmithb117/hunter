@@ -1,4 +1,4 @@
-export const calculateValues = (board) => (
+const calculateValues = (board) => (
   board.forEach((row) => {
     row.forEach((piece) => {
       countAdjacentMines(piece, board);
@@ -25,3 +25,5 @@ const countAdjacentMines = (pieceToCount, board) => {
   }
   return pieceToCount;
 };
+
+export default calculateValues;

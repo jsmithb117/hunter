@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@mui/styles";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { evenColorGen, oddColorGen } from "../features/row/generateColors";
+import { evenColorGen, oddColorGen } from "../features/row/colorGen";
 import Piece from "./Piece";
 
 const styles = {
