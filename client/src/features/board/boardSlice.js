@@ -9,7 +9,9 @@ export const boardSlice = createSlice({
   initialState: initialState.board,
   reducers: {
     createNewBoard: (state, action) => {
+      const { length, width } = action.payload;
       state.rows = boardCreator(action.payload);
+      state.totalPiecesCount = length * width;
     },
     uncover: (state, action) => {
       const { row, col } = action.payload;
