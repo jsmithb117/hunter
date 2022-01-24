@@ -34,6 +34,8 @@ const initialState = {
     rows: [[ newPiece ]],
     win: false,
     loss: false,
+    totalPiecesCount: 0,
+    uncoveredPiecesCount: 0,
   },
   display: {
     minesDisplay: 0,
