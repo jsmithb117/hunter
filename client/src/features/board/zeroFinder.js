@@ -1,52 +1,72 @@
 // if piece is a mine, noop
 // if piece is adjacent to a mine, uncovers that piece
 // if piece is not adjacent to a mine, recursively uncovers adjacent pieces
-const zeroFinder = (board, row, col) => {
-  if (board[row][col].isMarkedAsMine) {
-    return board;
+const zeroFinder = (rows, row, col) => {
+  let uncoveredPiecesCount = 0;
+  if (rows[row][col].isMarkedAsMine) {
+    return { uncoveredPiecesCount, rows };
   }
-  board[row][col].covered = false;
-  if (board[row][col].adjacentMines !== 0) {
-    return board;
+
+  rows[row][col].covered = false;
+  uncoveredPiecesCount++;
+
+  if (rows[row][col].adjacentMines !== 0) {
+    return { uncoveredPiecesCount, rows };
   }
   const prevRow = row - 1;
   const nextRow = row + 1;
   const prevCol = col - 1;
   const nextCol = col + 1;
-  const UL = board[prevRow]?.[prevCol] || null;
-  const UU = board[prevRow]?.[col] || null;
-  const UR = board[prevRow]?.[nextCol] || null;
-  const LL = board[row]?.[prevCol] || null;
-  const RR = board[row]?.[nextCol] || null;
-  const DL = board[nextRow]?.[prevCol] || null;
-  const DD = board[nextRow]?.[col] || null;
-  const DR = board[nextRow]?.[nextCol] || null;
+  const UL = rows[prevRow]?.[prevCol] || null;
+  const UU = rows[prevRow]?.[col] || null;
+  const UR = rows[prevRow]?.[nextCol] || null;
+  const LL = rows[row]?.[prevCol] || null;
+  const RR = rows[row]?.[nextCol] || null;
+  const DL = rows[nextRow]?.[prevCol] || null;
+  const DD = rows[nextRow]?.[col] || null;
+  const DR = rows[nextRow]?.[nextCol] || null;
 
   if (UL && UL.covered) {
-    board = zeroFinder(board, prevRow, prevCol);
+    const newBoard = zeroFinder(rows, prevRow, prevCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (UU && UU.covered) {
-    board = zeroFinder(board, prevRow, col);
+    const newBoard = zeroFinder(rows, prevRow, col);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (UR && UR.covered) {
-    board = zeroFinder(board, prevRow, nextCol);
+    const newBoard = zeroFinder(rows, prevRow, nextCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (LL && LL.covered) {
-    board = zeroFinder(board, row, prevCol);
+    const newBoard = zeroFinder(rows, row, prevCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (RR && RR.covered) {
-    board = zeroFinder(board, row, nextCol);
+    const newBoard = zeroFinder(rows, row, nextCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (DL && DL.covered) {
-    board = zeroFinder(board, nextRow, prevCol);
+    const newBoard = zeroFinder(rows, nextRow, prevCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (DD && DD.covered) {
-    board = zeroFinder(board, nextRow, col);
+    const newBoard = zeroFinder(rows, nextRow, col);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
   if (DR && DR.covered) {
-    board = zeroFinder(board, nextRow, nextCol);
+    const newBoard = zeroFinder(rows, nextRow, nextCol);
+    rows = newBoard.rows;
+    uncoveredPiecesCount += newBoard.uncoveredPiecesCount;
   }
-  return board;
+  return { rows, uncoveredPiecesCount };
 };
 
 export default zeroFinder;
