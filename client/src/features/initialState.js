@@ -36,6 +36,7 @@ const initialState = {
     loss: false,
     totalPiecesCount: 0,
     uncoveredPiecesCount: 0,
+    mines: 0,
   },
   display: {
     minesDisplay: 0,
