@@ -14,7 +14,7 @@ import {
 import { selectDifficulty } from "./features/display/displaySlice";
 
 // debug
-import { selectBoard } from "./features/board/boardSlice";
+// import { selectBoard } from "./features/board/boardSlice";
 // /debug
 
 function App() {
