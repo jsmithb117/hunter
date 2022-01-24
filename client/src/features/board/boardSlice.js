@@ -24,10 +24,10 @@ export const boardSlice = createSlice({
       state.rows[row][col].isMarkedAsMine = !state.rows[row][col].isMarkedAsMine;
     },
     setWin: (state) => {
-      state.rows.win = true;
+      state.win = true;
     },
     setLoss: (state) => {
-      state.rows.loss = true;
+      state.loss = true;
     },
     incrementPiecesMarked: (state) => {
       state.rows.piecesMarkedAsMine += 1;
