@@ -3,7 +3,11 @@ import CoronavirusSharpIcon from '@mui/icons-material/CoronavirusSharp';
 import MasksSharpIcon from '@mui/icons-material/MasksSharp';
 import Button from "@mui/material/Button";
 import buttonColor from './buttonColor';
-import { uncover, toggleMarked, findZeroes, setLoss, selectLoss } from "./boardSlice";
+import {
+  uncover,
+  toggleMarked,
+  selectLoss,
+} from "./boardSlice";
 
 const Piece = (props) => {
   const { piece, classes, color } = props;
@@ -22,11 +26,7 @@ const Piece = (props) => {
     if (loss) {
       return;
     }
-    if (piece.isMine) {
-      dispatch(setLoss());
-    }
     dispatch(uncover(piece));
-    dispatch(findZeroes(piece))
   };
   const rightClickHandler = () => {
     if (loss) {
