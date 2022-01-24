@@ -1,36 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
-import initialState from './initialState';
-import zeroFinder from './functions/zeroFinder';
-import boardCreator from './functions/boardCreator';
+// import initialState from './initialState';
+import initialState from '../initialState';
+import zeroFinder from './zeroFinder';
+import boardCreator from './boardCreator';
 
 export const boardSlice = createSlice({
   name: 'board',
-  initialState,
+  initialState: initialState.board,
   reducers: {
     createNewBoard: (state, action) => {
-      state.board = boardCreator(action.payload.difficultyObject);
+      state.rows = boardCreator(action.payload);
     },
-    toggleCovered: (state, row, col) => {
-      state.board[row][col].toggleCovered();
+    uncover: (state, action) => {
+      const { row, col } = action.payload;
+      state.rows[row][col].covered = false;
     },
-    findZeroes: (state, row, col) => {
-      state.board = zeroFinder(state.board, row, col);
+    findZeroes: (state, action) => {
+      const { row, col } = action.payload;
+      state.rows = zeroFinder(state.rows, row, col);
     },
     toggleMarked: (state, action) => {
       const { row, col } = action.payload;
-      state.board[row][col].toggleMarked();
+      state.rows[row][col].isMarkedAsMine = !state.rows[row][col].isMarkedAsMine;
     },
     setWin: (state) => {
-      state.board.win = true;
+      state.rows.win = true;
     },
     setLoss: (state) => {
-      state.board.loss = true;
+      state.rows.loss = true;
     },
     incrementPiecesMarked: (state) => {
-      state.board.piecesMarkedAsMine += 1;
+      state.rows.piecesMarkedAsMine += 1;
     },
     decrementPiecesMarked: (state) => {
-      state.board.piecesMarkedAsMine -= 1;
+      state.rows.piecesMarkedAsMine -= 1;
     },
   }
 });
@@ -40,12 +43,16 @@ export const {
   createNewBoard,
   setWin,
   setLoss,
-  toggleCovered,
+  uncover,
   findZeroes } = boardSlice.actions;
 
-export const selectBoard = (state) => state.board.board;
-export const selectWin = (state) => state.board.win;
-export const selectLoss = (state) => state.board.loss;
-export const selectPiecesMarkedAsMine = (state) => state.board.piecesMarkedAsMine;
+export const selectBoard = (state = initialState) => {
+  return state.board.rows
+};
+export const selectWin = (state = initialState) => {
+  return state.board.win;
+};
+export const selectLoss = (state = initialState) => state.board.loss;
+export const selectPiecesMarkedAsMine = (state = initialState) => state.board.piecesMarkedAsMine;
 
 export default boardSlice.reducer;

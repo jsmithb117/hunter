@@ -1,7 +1,7 @@
-const calculateValues = (board) => (
+const setAdjacentMines = (board) => (
   board.forEach((row) => {
     row.forEach((piece) => {
-      countAdjacentMines(piece, board);
+      piece.adjacentMines = countAdjacentMines(piece, board);
     });
   })
 );
@@ -10,7 +10,7 @@ const countAdjacentMines = (pieceToCount, board) => {
   const { row, col } = pieceToCount;
   let count = 0;
   if (pieceToCount.isMine) {
-    pieceToCount.adjacentMines = 9;
+    return 9;
   } else {
     for (let r = row - 1; r <= row + 1; r++) {
       for (let c = col - 1; c <= col + 1; c++) {
@@ -21,9 +21,8 @@ const countAdjacentMines = (pieceToCount, board) => {
         };
       }
     };
-    pieceToCount.adjacentMines = count;
   }
-  return pieceToCount;
+  return count;
 };
 
-export default calculateValues;
+export default setAdjacentMines;

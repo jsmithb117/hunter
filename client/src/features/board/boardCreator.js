@@ -1,14 +1,20 @@
-import PieceClass from './PieceClass';
+import {
+  EmptyPiece,
+  MinePiece,
+  VaccinePiece,
+  LockdownPiece,
+} from './PieceCreators';
 import rowColGenerator from './rowColGenerator';
 import calculateValues from './calculateValues';
 
-const boardCreator = (difficultyObject) => {
-  const { length, width, mines, vaccines, lockdowns } = difficultyObject;
+const boardCreator = (difficulty) => {
+  const { length, width, mines, vaccines, lockdowns } = difficulty;
   const rowColGen = rowColGenerator(length, width);
 
   const board = Array.from({ length }, () =>
   (Array.from({ length: width }, () => {
-    return new PieceClass(rowColGen.next().value)
+    const { row, col } = rowColGen.next().value;
+    return EmptyPiece(row, col);
   })));
 
   let minesCount = 0;
@@ -20,7 +26,7 @@ const boardCreator = (difficultyObject) => {
     const col = Math.floor(Math.random() * width);
 
     if (!board[row][col].isMine) {
-      board[row][col] = new PieceClass({ row, col, isMine: true });
+      board[row][col] = MinePiece(row, col);
       minesCount++;
     }
   }
@@ -30,7 +36,7 @@ const boardCreator = (difficultyObject) => {
     const col = Math.floor(Math.random() * width);
 
     if (!board[row][col].isMine && !board[row][col].isVaccine) {
-      board[row][col] = new PieceClass({ row, col, isVaccine: true });
+      board[row][col] = VaccinePiece(row, col);
       vaccinesCount++;
     }
   }
@@ -40,7 +46,7 @@ const boardCreator = (difficultyObject) => {
     const col = Math.floor(Math.random() * width);
 
     if (!board[row][col].isMine && !board[row][col].isVaccine && !board[row][col].isLockdown) {
-      board[row][col] = new PieceClass({ row, col, isLockdown: true });
+      board[row][col] = LockdownPiece(row, col);
       lockdownsCount++;
     }
   }

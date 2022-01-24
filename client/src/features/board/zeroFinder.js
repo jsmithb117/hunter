@@ -5,11 +5,9 @@ const zeroFinder = (board, row, col) => {
   if (board[row][col].isMarkedAsMine) {
     return board;
   }
+  board[row][col].covered = false;
   if (board[row][col].adjacentMines !== 0) {
-    board[row][col] = board[row][col].cloneUncovered()
     return board;
-  } else {
-    board[row][col] = board[row][col].cloneUncovered();
   }
   const prevRow = row - 1;
   const nextRow = row + 1;
