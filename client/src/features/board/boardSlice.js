@@ -59,7 +59,7 @@ export const selectWin = (state = initialState) => {
   return state.board.win;
 };
 export const selectLoss = (state = initialState) => state.board.loss;
-export const selectPiecesMarkedAsMine = (state = initialState) => state.board.piecesMarkedAsMine;
+export const selectMarkedPiecesCount = (state = initialState) => state.board.mines - state.board.markedPiecesCount;
 export const selectTotalPieces = (state = initialState) => state.board.totalPiecesCount;
 export const selectUncoveredPieces = (state = initialState) => state.board.uncoveredPiecesCount;
 

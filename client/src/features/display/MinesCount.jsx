@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectPiecesMarkedAsMine } from '../board/boardSlice';
+import { selectMarkedPiecesCount } from '../board/boardSlice';
 
 const MinesCount = () => {
-  const minesMarked = useSelector(selectPiecesMarkedAsMine);
+  const minesMarked = useSelector(selectMarkedPiecesCount);
 
   return (
     <div className="mines-count">
