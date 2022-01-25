@@ -1,5 +1,5 @@
-const buttonColor = (piece) => (
-  piece.adjacentMines === 0 ? 'lightgray' :
+const buttonTextColor = (piece) => (
+  piece.adjacentMines === 0 ? '#5c5c5c' :
   piece.adjacentMines === 1 ? 'blue' :
   piece.adjacentMines === 2 ? 'green' :
   piece.adjacentMines === 3 ? 'red' :
@@ -11,4 +11,4 @@ const buttonColor = (piece) => (
   null
 );
 
-export default buttonColor;
+export default buttonTextColor;

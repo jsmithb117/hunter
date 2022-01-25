@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import CoronavirusSharpIcon from '@mui/icons-material/CoronavirusSharp';
 import MasksSharpIcon from '@mui/icons-material/MasksSharp';
 import Button from "@mui/material/Button";
-import buttonColor from './buttonColor';
+import buttonTextColor from './buttonTextColor';
+import { indigo } from "@mui/material/colors";
+
 import {
   uncover,
   toggleMarked,
@@ -21,7 +23,7 @@ const Piece = (props) => {
     : covered ? (<MasksSharpIcon>{piece.adjacentMines}</MasksSharpIcon>)
     : piece.adjacentMines;
 
-  const renderColor = covered ? color : buttonColor(piece);
+  const renderColor = covered ? color : buttonTextColor(piece);
   const leftClickHandler = () => {
     if (loss) {
       return;
@@ -44,6 +46,8 @@ const Piece = (props) => {
         sx={{
           width: "13.68%",
           color: renderColor,
+          border: "1px solid black",
+          backgroundColor: indigo[100],
         }}
       >
         {icon}

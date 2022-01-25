@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Rows from "./features/board/Rows";
 import Display from "./features/display/Display";
@@ -17,8 +18,19 @@ import { selectDifficulty } from "./features/display/displaySlice";
 // import { selectBoard } from "./features/board/boardSlice";
 // /debug
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#04724D",
+    },
+    secondary: {
+      main: "#38182D",
+    },
+  },
+});
+
 function App() {
-  const [boardColor, setBoardColor] = useState("#fff");
+  const [boardColor, setBoardColor] = useState("#EBF1FF");
   const win = useSelector(selectWin);
   const loss = useSelector(selectLoss);
   const difficulty = useSelector(selectDifficulty);
@@ -53,33 +65,35 @@ function App() {
   useEffect(() => {
     if (win) {
       // TODO: use color names
-      setBoardColor("#2ecc71");
+      setBoardColor("green");
     }
     if (loss) {
       // TODO: use color names
-      setBoardColor("#e74c3c");
+      setBoardColor("red");
     }
   }, [win, loss, setBoardColor]);
 
   return (
     <div className="covid-hunter">
-      <HelmetProvider>
-        <ErrorBoundary>
-          <Display />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Rows />
-        </ErrorBoundary>
-        <Helmet>
-          <style type="text/css">
-            {`
+      <ThemeProvider theme={theme}>
+        <HelmetProvider>
+          <ErrorBoundary>
+            <Display />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <Rows />
+          </ErrorBoundary>
+          <Helmet>
+            <style type="text/css">
+              {`
           body {
             background-color : ${boardColor}
           }
           `}
-          </style>
-        </Helmet>
-      </HelmetProvider>
+            </style>
+          </Helmet>
+        </HelmetProvider>
+      </ThemeProvider>
     </div>
   );
 }
