@@ -4,6 +4,7 @@ import MasksSharpIcon from '@mui/icons-material/MasksSharp';
 import Button from "@mui/material/Button";
 import buttonTextColor from './buttonTextColor';
 import { indigo } from "@mui/material/colors";
+import InjectionSVG from './InjectionSVG';
 
 import {
   uncover,
@@ -13,7 +14,7 @@ import {
 
 const Piece = (props) => {
   const { piece, classes, color } = props;
-  const { covered, isMarkedAsMine } = piece;
+  const { covered, isMarkedAsMine, isVaccine } = piece;
   const dispatch = useDispatch();
   const loss = useSelector(selectLoss);
   const icon = isMarkedAsMine ? (
@@ -21,6 +22,7 @@ const Piece = (props) => {
       {piece.adjacentMines}
     </CoronavirusSharpIcon>)
     : covered ? (<MasksSharpIcon>{piece.adjacentMines}</MasksSharpIcon>)
+    : isVaccine ? (<InjectionSVG text={piece.adjacentMines} />)
     : piece.adjacentMines;
 
   const renderColor = covered ? color : buttonTextColor(piece);
@@ -31,10 +33,9 @@ const Piece = (props) => {
     dispatch(uncover(piece));
   };
   const rightClickHandler = () => {
-    if (loss) {
-      return;
+    if (!loss) {
+      dispatch(toggleMarked(piece));
     }
-    dispatch(toggleMarked(piece));
   };
 
     return (
