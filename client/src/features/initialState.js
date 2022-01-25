@@ -30,7 +30,7 @@ export const difficulty = {
 const newPiece = new EmptyPiece();
 const initialState = {
   board: {
-    piecesMarkedAsMine: 0,
+    markedPiecesCount: 0,
     rows: [[ newPiece ]],
     win: false,
     loss: false,
