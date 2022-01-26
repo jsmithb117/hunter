@@ -31,21 +31,20 @@ const newPiece = new EmptyPiece();
 const initialState = {
   board: {
     markedPiecesCount: 0,
-    rows: [[ newPiece ]],
+    rows: [[newPiece]],
+  },
+  count: {
     win: false,
     loss: false,
     totalPiecesCount: 0,
     uncoveredPiecesCount: 0,
     mines: 0,
-  },
-  display: {
-    minesDisplay: 0,
-    totalHealth: 3,
     currentHealth: 3,
-    difficulty: difficulty.beginner,
-    paused: false,
-    highScores: [],
+    totalHealth: 3,
   },
+
+  minesDisplay: 0,
+  difficulty: difficulty.beginner,
 };
 
 export default initialState;
