@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./App.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { lightGreen, red } from "@mui/material/colors";
+
+import "./App.css";
 import Rows from "./features/board/Rows";
 import Display from "./features/display/Display";
 import ErrorBoundary from "./ErrorBoundary";
 
-import {
-  createNewBoard,
-  selectWin,
-  selectLoss,
-} from "./features/board/boardSlice";
-import { selectDifficulty } from "./features/display/displaySlice";
-
-// debug
-// import { selectBoard } from "./features/board/boardSlice";
-// /debug
+import boardCreator from "./features/board/boardCreator";
+import { createNewBoard } from "./features/board/boardSlice";
+import { selectWin, selectLoss } from "./features/count/countSlice";
+import { selectDifficulty } from "./features/difficulty/difficultySlice";
 
 const theme = createTheme({
   palette: {
@@ -38,10 +34,12 @@ function App() {
   document.addEventListener("contextmenu", (event) => event.preventDefault());
 
   // debug
-  // const board = useSelector(selectBoard);
+  // import { selectRows } from "./features/board/boardSlice";
+  // const board = useSelector(selectRows);
   // let minesCount = 0;
   // let vaccinesCount = 0;
   // let lockdownsCount = 0;
+  // // console.log('board: ', board)
   // board.forEach((row, rowIndex) => {
   //   row.forEach((piece, colIndex) => {
   //     if (piece.isMine) {
@@ -55,21 +53,27 @@ function App() {
   //     }
   //   });
   // });
-  // console.log("pieceCount: ", { minesCount, vaccinesCount, lockdownsCount });
+  // if ( minesCount !== 8 || vaccinesCount !== 3 || lockdownsCount !== 3) {
+  // console.log("NOT ENOUGH PIECES pieceCount: ", { minesCount, vaccinesCount, lockdownsCount });
+  // }
   // /debug
 
   useEffect(() => {
-    dispatch(createNewBoard(difficulty));
+    const payload = {
+      rows: boardCreator(difficulty),
+      length: difficulty.length,
+      width: difficulty.width,
+      mines: difficulty.mines,
+    }
+    dispatch(createNewBoard(payload));
   }, [difficulty, dispatch]);
 
   useEffect(() => {
     if (win) {
-      // TODO: use color names
-      setBoardColor("green");
+      setBoardColor(lightGreen[500]);
     }
     if (loss) {
-      // TODO: use color names
-      setBoardColor("red");
+      setBoardColor(red[900]);
     }
   }, [win, loss, setBoardColor]);
 

@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import boardReducer from '../features/board/boardSlice';
-import displayReducer from '../features/display/displaySlice';
 
-export const store = configureStore({
+import boardReducer from '../features/board/boardSlice';
+import countReducer from '../features/count/countSlice';
+import difficultyReducer from '../features/difficulty/difficultySlice';
+
+const store = configureStore({
   reducer: {
     board: boardReducer,
-    display: displayReducer,
+    count: countReducer,
+    difficulty: difficultyReducer,
   },
 });
+
+export default store;

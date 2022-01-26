@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SickSharpIcon from "@mui/icons-material/SickSharp";
 import { green } from "@mui/material/colors";
-import { selectCurrentHealth, selectTotalHealth } from "./displaySlice";
+import { selectCurrentHealth, selectTotalHealth } from "../count/countSlice";
 
 function Health(props) {
   const currentHealth = useSelector(selectCurrentHealth);

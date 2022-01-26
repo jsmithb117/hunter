@@ -1,6 +1,5 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import initialState from '../initialState';
-import boardCreator from './boardCreator';
 
 const uncover = createAction('count/uncover');
 

@@ -5,16 +5,19 @@ import Button from "@mui/material/Button";
 import buttonTextColor from './buttonTextColor';
 import { indigo } from "@mui/material/colors";
 import InjectionSVG from './InjectionSVG';
+import zeroFinder from './zeroFinder';
+
+import { toggleMarked, selectRows } from "./boardSlice";
 
 import {
   uncover,
-  toggleMarked,
   selectLoss,
-} from "./boardSlice";
+ } from '../count/countSlice';
 
 const Piece = (props) => {
   const { piece, classes, color } = props;
-  const { covered, isMarkedAsMine, isVaccine } = piece;
+  const { row, col, covered, isMarkedAsMine, isVaccine } = piece;
+  const rows = useSelector(selectRows);
   const dispatch = useDispatch();
   const loss = useSelector(selectLoss);
   const icon = isMarkedAsMine ? (
@@ -30,7 +33,8 @@ const Piece = (props) => {
     if (loss) {
       return;
     }
-    dispatch(uncover(piece));
+    const rowsCopy = rows.map((row) => row.slice());
+    dispatch(uncover({ piece, zeroFinderResults: zeroFinder(rowsCopy, row, col) }));
   };
   const rightClickHandler = () => {
     if (!loss) {

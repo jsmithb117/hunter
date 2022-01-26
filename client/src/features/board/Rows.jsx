@@ -2,17 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Row from "./Row";
 
-import { selectBoard } from "./boardSlice";
+import { selectRows } from "./boardSlice";
 
 const Rows = () => {
-  const board = useSelector(selectBoard);
+  const rows = useSelector(selectRows);
 
-  const rowsMap = board.map((row, rowIndex) => (
+  const rowsMap = rows.map((row, rowIndex) => (
     <Row key={rowIndex} row={row} />
   ));
 
   return (
-    <div className="board-rows">
+    <div className="rows">
       {rowsMap}
     </div>
   );
