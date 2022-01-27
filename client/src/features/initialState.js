@@ -45,6 +45,7 @@ const initialState = {
 
   minesDisplay: 0,
   difficulty: difficulty.beginner,
+  time: 0,
 };
 
 export default initialState;
