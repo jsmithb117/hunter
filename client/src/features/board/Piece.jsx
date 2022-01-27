@@ -1,22 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
 import CoronavirusSharpIcon from '@mui/icons-material/CoronavirusSharp';
 import MasksSharpIcon from '@mui/icons-material/MasksSharp';
+import LockSharpIcon from '@mui/icons-material/LockSharp';
 import Button from "@mui/material/Button";
 import buttonTextColor from './buttonTextColor';
 import { indigo, red } from "@mui/material/colors";
 import InjectionSVG from './InjectionSVG';
 import zeroFinder from './zeroFinder';
+import styles from './Piece.module.css';
 
 import { toggleMarked, selectRows } from "./boardSlice";
 
-import {
-  uncover,
-  selectLoss,
- } from '../count/countSlice';
+import { uncover, selectLoss } from '../count/countSlice';
 
 const Piece = (props) => {
   const { piece, color } = props;
-  const { row, col, covered, isMarkedAsMine, isVaccine, isMine } = piece;
+  const { row, col, covered, isMarkedAsMine, isVaccine, isMine, isLockdown } =
+    piece;
   const rows = useSelector(selectRows);
   const dispatch = useDispatch();
   const loss = useSelector(selectLoss);
@@ -29,17 +29,30 @@ const Piece = (props) => {
       }}
     >
       {piece.adjacentMines}
-    </CoronavirusSharpIcon>)
-    : covered ? (<MasksSharpIcon>{piece.adjacentMines}</MasksSharpIcon>)
-    : isVaccine ? (<InjectionSVG text={piece.adjacentMines} />)
-    : isMine && !covered ? (<CoronavirusSharpIcon
-
+    </CoronavirusSharpIcon>
+  ) : covered ? (
+    <MasksSharpIcon>{piece.adjacentMines}</MasksSharpIcon>
+  ) : isVaccine ? (
+    <InjectionSVG text={piece.adjacentMines} />
+  ) : isMine && !covered ? (
+    <CoronavirusSharpIcon
       sx={{
         color: red[100],
         background: red[900],
       }}
-    />)
-    : piece.adjacentMines;
+    />
+  ) : isLockdown ? (
+    <div className={styles.lock}>
+      <LockSharpIcon
+        sx={{
+          zIndex: '1',
+        }}
+      />
+      <span className={styles.number}>{piece.adjacentMines}</span>
+    </div>
+  ) : (
+    piece.adjacentMines
+  );
 
   const renderColor = covered ? color : buttonTextColor(piece);
   const leftClickHandler = () => {
@@ -61,9 +74,9 @@ const Piece = (props) => {
         onContextMenu={() => rightClickHandler()}
         color={color}
         sx={{
-          width: "13.68%",
+          width: '13.68%',
           color: renderColor,
-          border: "1px solid black",
+          border: '1px solid black',
           backgroundColor: buttonColor,
         }}
       >
