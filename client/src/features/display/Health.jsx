@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SickSharpIcon from "@mui/icons-material/SickSharp";
-import { green } from "@mui/material/colors";
+import { green, red } from "@mui/material/colors";
 import { selectCurrentHealth, selectTotalHealth } from "../count/countSlice";
 
 function Health(props) {
@@ -29,10 +29,10 @@ function Health(props) {
         key={index}
         className={"health-bar health-bar-unhealthy"}
         sx={{
-          color: "red",
+          color: red[500],
           height: 48,
-          stroke: "black",
-          strokeWidth: 14,
+          stroke: red[900],
+          strokeWidth: .2,
         }}
       />
     );
