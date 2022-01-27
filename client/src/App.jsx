@@ -6,13 +6,14 @@ import { lightGreen, red } from "@mui/material/colors";
 
 import "./App.css";
 import Rows from "./features/board/Rows";
-import Display from "./features/display/Display";
+import Display from "./features/count/Display";
 import ErrorBoundary from "./ErrorBoundary";
 
 import boardCreator from "./features/board/boardCreator";
 import { createNewBoard } from "./features/board/boardSlice";
 import { selectWin, selectLoss } from "./features/count/countSlice";
 import { selectDifficulty } from "./features/difficulty/difficultySlice";
+import { selectTime } from "./features/time/timeSlice";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ function App() {
   const [boardColor, setBoardColor] = useState("#EBF1FF");
   const win = useSelector(selectWin);
   const loss = useSelector(selectLoss);
+  const time = useSelector(selectTime);
   const difficulty = useSelector(selectDifficulty);
   const dispatch = useDispatch();
   document.addEventListener("contextmenu", (event) => event.preventDefault());
@@ -69,13 +71,14 @@ function App() {
   }, [difficulty, dispatch]);
 
   useEffect(() => {
-    if (win) {
+    if (win && time !== 0) {
+      console.log('Win!  time: ', time)
       setBoardColor(lightGreen[500]);
     }
     if (loss) {
       setBoardColor(red[900]);
     }
-  }, [win, loss, setBoardColor]);
+  }, [win, loss, setBoardColor, time]);
 
   return (
     <div className="covid-hunter">
