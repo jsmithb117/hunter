@@ -17,6 +17,7 @@ export const countSlice = createSlice({
       state.uncoveredPiecesCount += uncoveredPiecesCount;
       if (isMine) {
         state.currentHealth -= 1;
+        state.mines -= 1;
       }
       if (state.currentHealth === 0) {
         state.loss = true;
