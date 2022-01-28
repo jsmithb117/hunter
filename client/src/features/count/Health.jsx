@@ -4,7 +4,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SickSharpIcon from "@mui/icons-material/SickSharp";
 import { green, red } from "@mui/material/colors";
 
-import { selectCurrentHealth, selectTotalHealth } from "../count/countSlice";
+import { selectCurrentHealth, selectTotalHealth } from "../selectors";
 
 function Health(props) {
   const currentHealth = useSelector(selectCurrentHealth);

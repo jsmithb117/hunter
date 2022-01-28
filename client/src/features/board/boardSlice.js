@@ -42,12 +42,4 @@ export const {
   createNewBoard,
 } = boardSlice.actions;
 
-export const selectRows = (state = initialState) => {
-  return state.board.rows
-};
-
-export const selectMarkedPiecesCount = (state = initialState) => {
-  return state.board.markedPiecesCount;
-}
-
 export default boardSlice.reducer;

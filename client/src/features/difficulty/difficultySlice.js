@@ -13,8 +13,4 @@ export const difficultySlice = createSlice({
 
 export const { setDifficulty } = difficultySlice.actions;
 
-export const selectDifficulty = (state) => {
-  return state.difficulty
-};
-
 export default difficultySlice.reducer;

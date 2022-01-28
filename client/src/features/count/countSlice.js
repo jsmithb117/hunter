@@ -45,12 +45,4 @@ export const {
   uncover,
 } = countSlice.actions;
 
-export const selectWin = (state = initialState) => state.count.win;
-export const selectLoss = (state = initialState) => state.count.loss;
-export const selectTotalPieces = (state = initialState) => state.count.totalPiecesCount;
-export const selectUncoveredPieces = (state = initialState) => state.count.uncoveredPiecesCount;
-export const selectCurrentHealth = (state = initialState) => state.count.currentHealth;
-export const selectTotalHealth = (state = initialState) => state.count.totalHealth;
-export const selectMines = (state = initialState) => state.count.mines;
-
 export default countSlice.reducer;

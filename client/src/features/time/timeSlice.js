@@ -12,6 +12,5 @@ export const timeSlice = createSlice({
 
 export const { setTime } = timeSlice.actions;
 
-export const selectTime = (state = initialState) => state.time;
 
 export default timeSlice.reducer;

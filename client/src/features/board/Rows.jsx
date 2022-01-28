@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Row from "./Row";
 
-import { selectRows } from "./boardSlice";
+import { selectRows } from "../selectors";
 
 const Rows = () => {
   const rows = useSelector(selectRows);

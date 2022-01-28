@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
-  selectLockdown,
-  selectVirus,
   setLockdownFalse,
   setVirusFalse,
   setPenalty,
   lockdownPenalty,
   virusPenalty,
-  selectPenalty,
 } from "./penaltySlice";
+import { selectLockdown, selectVirus, selectPenalty } from "../selectors";
 
 const Penalty = () => {
   const isLockdownActive = useSelector(selectLockdown);

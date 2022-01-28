@@ -31,11 +31,6 @@ export const {
   setPenalty,
 } = penaltySlice.actions;
 
-// TODO: Move selectors from all slices to one file
-export const selectLockdown = (state = initialState) => state.penalty.lockdown;
-export const selectVirus = (state = initialState) => state.penalty.virus;
-export const selectPenalty = (state = initialState) => state.penalty.penaltyCount;
-
 export const lockdownPenalty = 10;
 export const virusPenalty = 30;
 

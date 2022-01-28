@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectWin } from "../count/countSlice";
+
+import { selectWin } from "../selectors";
 import { setTime } from "./timeSlice";
 
 function Time () {

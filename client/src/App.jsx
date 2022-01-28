@@ -11,10 +11,13 @@ import ErrorBoundary from "./ErrorBoundary";
 
 import boardCreator from "./features/board/boardCreator";
 import { createNewBoard } from "./features/board/boardSlice";
-import { selectWin, selectLoss } from "./features/count/countSlice";
-import { selectDifficulty } from "./features/difficulty/difficultySlice";
-import { selectTime } from "./features/time/timeSlice";
-import { selectPenalty } from "./features/penalty/penaltySlice";
+import {
+  selectWin,
+  selectLoss,
+  selectDifficulty,
+  selectTime,
+  selectPenalty,
+} from "./features/selectors";
 
 const theme = createTheme({
   palette: {
@@ -64,10 +67,8 @@ function App() {
 
   useEffect(() => {
     const payload = {
+      ...difficulty,
       rows: boardCreator(difficulty),
-      length: difficulty.length,
-      width: difficulty.width,
-      mines: difficulty.mines,
     }
     dispatch(createNewBoard(payload));
   }, [difficulty, dispatch]);
@@ -80,7 +81,7 @@ function App() {
     if (loss) {
       setBoardColor(red[900]);
     }
-  }, [win, loss, setBoardColor, time]);
+  }, [win, loss, setBoardColor, time, penalty]);
 
   return (
     <div className="covid-hunter">

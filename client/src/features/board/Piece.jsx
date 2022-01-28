@@ -10,9 +10,13 @@ import zeroFinder from "./zeroFinder";
 import styles from "./Piece.module.css";
 import { setLockdownTrue, setVirusTrue } from "../penalty/penaltySlice";
 
-import { toggleMarked, selectRows } from "./boardSlice";
+import { toggleMarked } from "./boardSlice";
 
-import { uncover, selectLoss } from "../count/countSlice";
+import { uncover } from "../count/countSlice";
+import {
+  selectRows,
+  selectLoss,
+} from "../selectors";
 
 const Piece = (props) => {
   const { piece, color } = props;
