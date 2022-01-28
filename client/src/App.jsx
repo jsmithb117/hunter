@@ -14,6 +14,7 @@ import { createNewBoard } from "./features/board/boardSlice";
 import { selectWin, selectLoss } from "./features/count/countSlice";
 import { selectDifficulty } from "./features/difficulty/difficultySlice";
 import { selectTime } from "./features/time/timeSlice";
+import { selectPenalty } from "./features/penalty/penaltySlice";
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,7 @@ function App() {
   const loss = useSelector(selectLoss);
   const time = useSelector(selectTime);
   const difficulty = useSelector(selectDifficulty);
+  const penalty = useSelector(selectPenalty);
   const dispatch = useDispatch();
   document.addEventListener("contextmenu", (event) => event.preventDefault());
 
@@ -72,7 +74,7 @@ function App() {
 
   useEffect(() => {
     if (win && time !== 0) {
-      console.log('Win!  time: ', time)
+      console.log(`You win!\nYour time was ${time} seconds\nYou incurred ${penalty} penalty points\nYour overall score is ${time + penalty}`);
       setBoardColor(lightGreen[500]);
     }
     if (loss) {
