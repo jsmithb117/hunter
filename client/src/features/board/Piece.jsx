@@ -8,6 +8,7 @@ import { indigo, red } from "@mui/material/colors";
 import InjectionSVG from "./InjectionSVG";
 import zeroFinder from "./zeroFinder";
 import styles from "./Piece.module.css";
+import { setLockdownTrue, setVirusTrue } from "../penalty/penaltySlice";
 
 import { toggleMarked, selectRows } from "./boardSlice";
 
@@ -58,6 +59,12 @@ const Piece = (props) => {
   const leftClickHandler = () => {
     if (loss) {
       return;
+    }
+    if (isLockdown) {
+      dispatch(setLockdownTrue());
+    }
+    if (isMine) {
+      dispatch(setVirusTrue());
     }
     const rowsCopy = rows.map((row) => row.slice());
     dispatch(
