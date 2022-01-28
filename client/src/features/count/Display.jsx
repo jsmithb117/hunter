@@ -2,6 +2,7 @@ import React from 'react';
 import Health from './Health';
 import MinesCount from './MinesCount';
 import Time from '../time/Time';
+import Penalty from '../penalty/Penalty';
 
 const Display = () => {
   return (
@@ -9,6 +10,7 @@ const Display = () => {
       <Health />
       <MinesCount />
       <Time />
+      <Penalty />
     </div>
   );
 };
