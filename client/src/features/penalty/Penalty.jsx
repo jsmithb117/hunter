@@ -13,36 +13,35 @@ import { selectLockdown, selectVirus, selectPenalty } from "../selectors";
 const Penalty = () => {
   const isLockdownActive = useSelector(selectLockdown);
   const isVirusActive = useSelector(selectVirus);
-  const penalty = useSelector(selectPenalty);
+  const penaltyCount = useSelector(selectPenalty);
   const dispatch = useDispatch();
   const [showLockdownPenalty, setShowLockdownPenalty] = useState(false);
   const [showVirusPenalty, setShowVirusPenalty] = useState(false);
 
+  const showAndDelayHide = (showFunc, delay) => {
+    showFunc(true);
+    setTimeout(() => showFunc(false), delay);
+  };
+
   useEffect(() => {
     if (isLockdownActive) {
-      dispatch(setPenalty(penalty + lockdownPenalty));
+      dispatch(setPenalty(penaltyCount + lockdownPenalty));
       dispatch(setLockdownFalse());
-      setShowLockdownPenalty(true);
-      setTimeout(() => {
-        setShowLockdownPenalty(false);
-      }, 3000);
+      showAndDelayHide(setShowLockdownPenalty, 3000);
     }
-  }, [isLockdownActive, dispatch, penalty]);
+  }, [isLockdownActive, dispatch, penaltyCount]);
 
   useEffect(() => {
     if (isVirusActive) {
-      dispatch(setPenalty(penalty + virusPenalty));
+      dispatch(setPenalty(penaltyCount + virusPenalty));
       dispatch(setVirusFalse());
-      setShowVirusPenalty(true);
-      setTimeout(() => {
-        setShowVirusPenalty(false);
-      }, 3000);
+      showAndDelayHide(setShowVirusPenalty, 3000);
     }
-  }, [isVirusActive, dispatch, penalty]);
+  }, [isVirusActive, dispatch, penaltyCount]);
 
   return (
     <div className="penalty">
-      Total penalties: {penalty}
+      Total penalties: {penaltyCount}
       {showLockdownPenalty && (
         <mark className={"lockdown-penalty"}>
           {`+${lockdownPenalty} seconds lockdown penalty`}
