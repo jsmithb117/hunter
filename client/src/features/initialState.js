@@ -42,10 +42,13 @@ const initialState = {
     currentHealth: 3,
     totalHealth: 3,
   },
-
-  minesDisplay: 0,
   difficulty: difficulty.beginner,
   time: 0,
+  penalty: {
+    penaltyCount: 0,
+    lockdown: false,
+    virus: false,
+  },
 };
 
 export default initialState;
