@@ -13,10 +13,7 @@ import { setLockdownTrue, setVirusTrue } from "../penalty/penaltySlice";
 import { toggleMarked } from "./boardSlice";
 
 import { uncover } from "../count/countSlice";
-import {
-  selectRows,
-  selectLoss,
-} from "../selectors";
+import { selectRows, selectLoss } from "../selectors";
 
 const Piece = (props) => {
   const { piece, color } = props;
@@ -47,14 +44,18 @@ const Piece = (props) => {
       }}
     />
   ) : isLockdown ? (
-    <div className={styles.lock}>
-      <LockSharpIcon
-        sx={{
-          zIndex: "1",
-        }}
-      />
-      <span className={styles.number}>{piece.adjacentMines}</span>
-    </div>
+    <>
+      <div className={styles.lock}>
+        <LockSharpIcon
+          sx={{
+            zIndex: "1",
+          }}
+        />
+      </div>
+      <div className={styles.numberBorder}>
+        <span className={styles.number}>{piece.adjacentMines}</span>
+      </div>
+    </>
   ) : (
     piece.adjacentMines
   );
