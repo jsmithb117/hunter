@@ -4,6 +4,7 @@ import boardReducer from '../features/board/boardSlice';
 import countReducer from '../features/count/countSlice';
 import difficultyReducer from '../features/difficulty/difficultySlice';
 import timeReducer from '../features/time/timeSlice';
+import penaltyReducer from '../features/penalty/penaltySlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     count: countReducer,
     difficulty: difficultyReducer,
     time: timeReducer,
+    penalty: penaltyReducer,
   },
 });
 
